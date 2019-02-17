@@ -15,8 +15,8 @@ class Graph {
 	public:
 	Graph& add_node(std::string id, std::string name);
 	Graph& add_edge(std::string name, std::string from, std::string to, int metric);
-	std::shared_ptr<Node> node_at(std::string id);
-	ShortestPathGraph path_from(std::string from);	
+	std::shared_ptr<Node> node_at(const std::string& id);
+	ShortestPathGraph path_from(const std::string& from);	
 };
 
 struct Node {

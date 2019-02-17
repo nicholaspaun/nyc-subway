@@ -18,15 +18,15 @@ Graph& Graph::add_edge(string name, string from, string to, int metric) {
 	return *this;
 }
 
-shared_ptr<Node> Graph::node_at(string id) {
+shared_ptr<Node> Graph::node_at(const string& id) {
 	return nodes.at(id);
 }
 
-ShortestPathGraph Graph::path_from(string from) {
+ShortestPathGraph Graph::path_from(const string& from) {
 	return ShortestPathGraph(*this, from);
 }
 
-ShortestPathGraph::ShortestPathGraph(Graph& g, string from) : g(g) {
+ShortestPathGraph::ShortestPathGraph(Graph& g, const string& from) : g(g) {
 
 	// 1. Initialize source
 	shared_ptr<Node> source = g.node_at(from);
@@ -55,7 +55,7 @@ ShortestPathGraph::ShortestPathGraph(Graph& g, string from) : g(g) {
 	}
 }
 
-std::deque<PathEntry> ShortestPathGraph::to(string dest) {
+std::deque<PathEntry> ShortestPathGraph::to(const string& dest) {
 	std::deque<PathEntry> path;
 	PathEntry ent = prev[dest];
 	while (ent.node != NULL) {

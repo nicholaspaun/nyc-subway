@@ -25,7 +25,7 @@ class ShortestPathGraph {
 	Graph& g;
 
 	public:
-	ShortestPathGraph(Graph& g, std::string from);
-	std::deque<PathEntry> to(std::string to);
+	ShortestPathGraph(Graph& g, const std::string& from);
+	std::deque<PathEntry> to(const std::string& to);
 };
 
