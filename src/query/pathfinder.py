@@ -11,10 +11,12 @@ def nodes_stops(sub):
         sid = s['stop_id']
         name = s['stop_name']
         sub.add_node(sid,name)
+
         # Necessary for switching platforms and maybe walking between other stations
+        # Slight cost to ensure that it will be left out of the path if unecessary
         if 'parent_station' in s and s['parent_station']:
-            sub.add_edge('Platform change',sid,s['parent_station'],0)
-            sub.add_edge('Platform change',s['parent_station'],sid,0)
+            sub.add_edge('Platform change',sid,s['parent_station'],1) 
+            sub.add_edge('Platform change',s['parent_station'],sid,1)
 
     return sub
 
