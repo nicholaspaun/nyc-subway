@@ -48,7 +48,7 @@ ShortestPathGraph::ShortestPathGraph(Graph& g, string from) : g(g) {
 			shared_ptr<Node> v = e->to.lock();
 			int ourMetric = prev[u->id].metric + e->metric;
 			if (!prev.count(v->id) || ourMetric < prev[v->id].metric) {
-				prev.insert_or_assign(v->id, PathEntry{ourMetric, u, e});
+				prev[v->id] = PathEntry{ourMetric, u, e};
 				pq.push({ourMetric, v});
 			}
 		}

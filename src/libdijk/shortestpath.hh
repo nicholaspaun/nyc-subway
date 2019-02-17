@@ -10,6 +10,13 @@
 class ShortestPathGraph;
 class PathEntry;
 
+struct PathEntry {
+	int metric;
+	std::shared_ptr<Node> node;
+	std::shared_ptr<Edge> out_edge;
+	bool operator>(const PathEntry& b) const;	
+};
+
 class ShortestPathGraph {
 	private:
 	std::priority_queue<PathEntry,std::vector<PathEntry>,std::greater<PathEntry>> pq;
@@ -22,9 +29,3 @@ class ShortestPathGraph {
 	std::deque<PathEntry> to(std::string to);
 };
 
-struct PathEntry {
-	int metric;
-	std::shared_ptr<Node> node;
-	std::shared_ptr<Edge> out_edge;
-	bool operator>(const PathEntry& b) const;	
-};
