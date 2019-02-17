@@ -1,6 +1,6 @@
 default: pathfinder gc_routes
 
-pathfinder: bin/_libdijk.so
+pathfinder: bin/_libdijk.so bin/pathfinder.py
 
 bin/_libdijk.so: src/libdijk/dijk.cc src/libdijk/graph.hh src/libdijk/shortestpath.hh bin/libdijk_wrap.cxx
 	cp src/libdijk/graph.hh src/libdijk/shortestpath.hh bin/
@@ -8,6 +8,14 @@ bin/_libdijk.so: src/libdijk/dijk.cc src/libdijk/graph.hh src/libdijk/shortestpa
 
 bin/libdijk_wrap.cxx: src/libdijk/graph.hh src/libdijk/shortestpath.hh src/libdijk/libdijk.i
 	swig -c++ -python -o bin/libdijk_wrap.cxx -outdir bin/ src/libdijk/libdijk.i
+
+bin/pathfinder.py: src/query/pathfinder.py bin/csvql.py
+	cp src/query/pathfinder.py bin/
+
+bin/csvql.py: src/query/csvql.py
+	cp src/query/csvql.py bin/
+
+
 
 gc_routes:
 
