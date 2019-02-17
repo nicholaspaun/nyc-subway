@@ -4,3 +4,5 @@ __pycache__
 *.so
 a.out
 libdijk.py
+pathfinder
+gc_routes
