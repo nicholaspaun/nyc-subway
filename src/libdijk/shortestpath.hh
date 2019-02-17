@@ -12,6 +12,7 @@ class ShortestPathGraph {
 	std::priority_queue<PathEntry,std::vector<PathEntry>,std::greater<PathEntry>> pq;
 	std::unordered_map<std::string, PathEntry> prev;
 	std::unordered_set<std::string> visited;
+	Graph& g;
 
 	public:
 	ShortestPathGraph(Graph& g, std::string from);

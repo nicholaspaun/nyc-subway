@@ -1,5 +1,6 @@
 #include "graph.hh"
 #include "shortestpath.hh"
+#include <iostream>
 
 using std::string;
 using std::make_shared;
@@ -25,7 +26,8 @@ ShortestPathGraph Graph::path_from(string from) {
 	return ShortestPathGraph(*this, from);
 }
 
-ShortestPathGraph::ShortestPathGraph(Graph& g, string from) {
+ShortestPathGraph::ShortestPathGraph(Graph& g, string from) : g(g) {
+
 	// 1. Initialize source
 	shared_ptr<Node> source = g.node_at(from);
 	pq.push({0,source});
@@ -57,13 +59,26 @@ std::deque<PathEntry> ShortestPathGraph::to(string dest) {
 	std::deque<PathEntry> path;
 	PathEntry ent = prev[dest];
 	while (ent.node != NULL) {
-		path.push_front(ent);
+		int prevDist = prev[ent.node->id].node != NULL ? prev[ent.node->id].metric : 0;
+		path.push_front({ent.metric - prevDist, ent.node, ent.out_edge});
 		ent = prev[ent.node->id];
 	}
 
+	path.push_back({0, g.node_at(dest), make_shared<Edge>(Edge{"Arrived.",0})});
 	return path;	
 }
 
 bool PathEntry::operator>(const PathEntry& b) const {
 	return metric > b.metric;
+}
+
+int main() {
+	Graph g;
+	g.add_node("SLC","Salt Lake City").add_node("PRV","Provo").add_node("BRC","Bryce Canyon");
+	g.add_edge("I-15","SLC","PRV",60).add_edge("I-15","PRV","BRC",200).add_edge("US-89","SLC","BRC",300);
+	ShortestPathGraph spg = g.path_from("SLC");
+	std::deque<PathEntry> path = spg.to("BRC");
+	for (auto city: path) {
+		std::cout << city.node->name << "\t" << city.metric << "\t via " << city.out_edge->name << "\n";
+	}
 }
