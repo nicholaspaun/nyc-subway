@@ -1,1 +1,6 @@
 bin/
+__pycache__
+*_wrap.cxx
+*.so
+a.out
+libdijk.py

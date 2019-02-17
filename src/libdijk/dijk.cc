@@ -72,13 +72,3 @@ bool PathEntry::operator>(const PathEntry& b) const {
 	return metric > b.metric;
 }
 
-int main() {
-	Graph g;
-	g.add_node("SLC","Salt Lake City").add_node("PRV","Provo").add_node("BRC","Bryce Canyon");
-	g.add_edge("I-15","SLC","PRV",60).add_edge("I-15","PRV","BRC",200).add_edge("US-89","SLC","BRC",300);
-	ShortestPathGraph spg = g.path_from("SLC");
-	std::deque<PathEntry> path = spg.to("BRC");
-	for (auto city: path) {
-		std::cout << city.node->name << "\t" << city.metric << "\t via " << city.out_edge->name << "\n";
-	}
-}
