@@ -8,7 +8,7 @@ class Node;
 class Edge;
 class ShortestPathGraph;
 
-class Graph {
+class Graph: public std::enable_shared_from_this<Graph> {
 	private:
 	std::unordered_map<std::string,std::shared_ptr<Node>> nodes;
 

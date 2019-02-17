@@ -22,10 +22,10 @@ class ShortestPathGraph {
 	std::priority_queue<PathEntry,std::vector<PathEntry>,std::greater<PathEntry>> pq;
 	std::unordered_map<std::string, PathEntry> prev;
 	std::unordered_set<std::string> visited;
-	Graph& g;
+	std::shared_ptr<Graph> g;
 
 	public:
-	ShortestPathGraph(Graph& g, const std::string& from);
+	ShortestPathGraph(std::shared_ptr<Graph> g, const std::string& from);
 	std::deque<PathEntry> to(const std::string& to);
 };
 
