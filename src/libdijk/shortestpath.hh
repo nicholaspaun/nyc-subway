@@ -4,6 +4,8 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <memory>
+#include <deque>
+#include <functional>
 
 class ShortestPathGraph;
 class PathEntry;
