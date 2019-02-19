@@ -4,8 +4,8 @@
 #include <memory>
 
 class Graph;
-class Node;
-class Edge;
+struct Node;
+struct Edge;
 class ShortestPathGraph;
 
 class Graph: public std::enable_shared_from_this<Graph> {

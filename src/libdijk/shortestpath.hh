@@ -8,7 +8,7 @@
 #include <functional>
 
 class ShortestPathGraph;
-class PathEntry;
+struct PathEntry;
 
 struct PathEntry {
 	int metric;
